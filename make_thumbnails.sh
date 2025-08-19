@@ -17,4 +17,4 @@ done
 
 # Special case resize
 mkdir -p tn/images
-magick images/portrait_circle.jpg -resize 5000x5000 "tn/images/portrait_circle.jpg"
+magick images/portrait_circle.png -resize 5000x5000 "tn/images/portrait_circle.jpg"
