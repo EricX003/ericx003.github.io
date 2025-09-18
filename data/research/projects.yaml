@@ -8,7 +8,7 @@ QuARI_NIPS:
   links:
     arxiv: "https://arxiv.org/abs/2505.21647"
     code: "https://github.com/mvrl/QuARI"
-  venue: "arXiv"
+  venue: "The Thirty-Ninth Annual Conference on Neural Information Processing Systems (NeurIPS)"
   year: 2025
   thumbnail: "tn/images/QuARI.png"
   description: "Hypernetwork-based framework for dynamic database feature adapation, for retrieval and large-scale reranking."
