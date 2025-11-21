@@ -8,6 +8,7 @@ QuARI_NIPS:
   links:
     arxiv: "https://arxiv.org/abs/2505.21647"
     code: "https://github.com/mvrl/QuARI"
+    website: "https://ericx003.github.io/proj/quari/"
   venue: "The Thirty-Ninth Annual Conference on Neural Information Processing Systems (NeurIPS)"
   year: 2025
   thumbnail: "tn/images/QuARI.png"

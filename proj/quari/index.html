@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="QuARI: Query Adaptive Retrieval Improvement">
+  <meta name="keywords" content="image retrieval, vision-language models, hypernetworks, QuARI, instance-level retrieval">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>QuARI</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <style>
+    /* Center all images */
+    img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    /* Make teaser smaller */
+    .teaser {
+      max-width: 70%;
+      height: auto;
+    }
+  </style>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">QuARI: Query Adaptive Retrieval Improvement</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://ericx003.github.io/">Eric Xing</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://cs.slu.edu/~stylianou/">Abby Stylianou</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="https://cs.engineering.gwu.edu/robert-pless">Robert Pless</a><sup>3</sup>,</span>
+            <span class="author-block">
+              <a href="https://jacobsn.github.io/">Nathan Jacobs</a><sup>1</sup></span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Washington University in St. Louis</span>
+            <span class="author-block"><sup>2</sup>Saint Louis University</span>
+            <span class="author-block"><sup>3</sup>The George Washington University</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="./static/paper.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- arXiv Link -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2505.21647"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Code Link -->
+              <span class="link-block">
+                <a href="https://github.com/mvrl/QuARI"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="column is-four-fifths has-text-centered">
+      <!-- Update this path to your teaser figure -->
+      <img class="teaser" src="./static/resources/quari_teaser.png" alt="QuARI Teaser Image" />
+    </div>
+
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Current multimodal embedding models are widely used for image-to-image and text-to-image
+            retrieval, but their global embeddings often miss the fine-grained cues needed for
+            challenging retrieval tasks. QuARI tackles this by learning
+            a query-specific linear projection of a frozen backbone embedding space. A transformer
+            hypernetwork maps each query to both an adapted query embedding and a low-rank projection
+            matrix that is applied to all gallery embeddings, making the adaptation cheap enough to
+            run over millions of items. Trained with a symmetric contrastive loss and additional
+            “semi-positive” neighbors, QuARI emphasizes subspaces that are relevant to the current
+            query while down-weighting irrelevant directions. Experiments on ILIAS and INQUIRE show
+            that this simple query-conditioned adaptation consistently outperforms strong baselines,
+            including static task-adapted encoders and heavyweight re-rankers, while remaining highly
+            efficient at inference time.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Method</h2>
+        <!-- Overview figure -->
+        <img src="./static/resources/quari_overview.png"
+             alt="Overview of QuARI query-specific retrieval pipeline" />
+
+        <h3 class="title is-4">Query-Conditioned Embedding Projections</h3>
+        <div class="content has-text-justified">
+          <p>
+            QuARI starts from global embeddings produced by a pretrained vision–language encoder
+            such as CLIP or SigLIP2. For each query, the hypernetwork takes the query embedding as
+            input and predicts two things: a customized query representation and a linear projection
+            matrix that will be applied to all image embeddings in the gallery. Retrieval is then
+            performed in this query-specific feature space using cosine similarity between the adapted
+            query and adapted database embeddings.
+          </p>
+          <p>
+            To keep computation tractable and encourage generalization, the projection is constrained
+            to be low-rank. The matrix is represented as a sum of rank-one components, and the
+            corresponding vectors are generated from a shared bank of “column tokens” refined by a
+            transformer encoder. Intuitively, each rank-one component defines a semantic direction
+            that can be turned up or down depending on what the query cares about.
+          </p>
+        </div>
+
+        <!-- Hypernetwork figure -->
+        <img src="./static/resources/quari_hypernetwork.png"
+             alt="Transformer-based hypernetwork that predicts low-rank projection matrices" />
+
+        <h3 class="title is-4">Transformer-Based Hypernetwork</h3>
+        <div class="content has-text-justified">
+          <p>
+            The query adaptation network tokenizes the projection matrix into separate banks of
+            U- and V-tokens, which are initialized near zero and repeatedly refined. At each step,
+            a query-conditioned control token and sinusoidal positional encodings are concatenated
+            with the token sequence and passed through a shared transformer. Residual updates refine
+            the tokens over multiple iterations before they are decoded into the final low-rank
+            projection components and the adapted query embedding.
+          </p>
+          <p>
+            Training uses a symmetric contrastive objective over transformed text–image pairs, with
+            additional “semi-positive” examples discovered via precomputed nearest neighbors in the
+            backbone embedding space. These semi-positives encourage QuARI to assign higher scores
+            to visually and semantically similar images, rather than overfitting to a single labeled
+            target. Lightweight noise added to query embeddings during training further regularizes
+            the model and supports strong performance for both text and image queries.
+          </p>
+        </div>
+
+        <!-- Results / efficiency figure (optional placeholder) -->
+         
+
+        <h3 class="title is-4">Performance and Efficiency</h3>
+
+        <img src="./static/resources/quari_results_ilias.png"
+        alt="QuARI retrieval accuracy and efficiency compared to baselines" />
+        
+        <div class="content has-text-justified">
+          <p>
+            On ILIAS, QuARI substantially improves mean average precision for both image-to-image
+            and text-to-image retrieval at 5M and 100M distractors. O
+          </p>
+        </div>
+
+
+        <img src="./static/resources/quari_results_rerank.png"
+        alt="QuARI results on reraking" />
+
+        <div class="content has-text-justified">
+          <p>
+            Because the hypernetwork runs once per query and the learned projection is linear,
+            QuARI can adapt millions of database embeddings very quickly. QuARI outperforms strong baselines in image-to-image 
+            and text-to-image reranking in both accuracy and efficiency.
+        </div>
+
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{xing2025quari,
+  title   = {QuARI: Query Adaptive Retrieval Improvement},
+  author  = {Xing, Eric and Stylianou, Abby and Pless, Robert and Jacobs, Nathan},
+  journal = {The Thirty-Ninth Annual Conference on Neural Information Processing Systems (NeurIPS)},
+  year    = {2025}
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <!-- Optional icon links can go here -->
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            Thank you to the
+            <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>
+            project for the source code of this website.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
