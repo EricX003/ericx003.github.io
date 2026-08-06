@@ -1,3 +1,39 @@
+TerraDiT_Omega_ECCV:
+  title: "TerraDiT-Ω: Unified Spatial Control for Satellite Image Synthesis with Any Geospatial Primitive"
+  authors:
+    - "Brian Wei"
+    - "Srikumar Sastry"
+    - "Dan Cher"
+    - "Eric Xing"
+    - "Nathan Jacobs"
+  venue: "European Conference on Computer Vision (ECCV)"
+  year: 2026
+  links:
+    arxiv: "https://arxiv.org/abs/2606.31029"
+    code: "https://github.com/mvrl/TerraDiT"
+    website: "https://brian-j-wei.github.io/terradit-omega/index.html"
+    bibtex: "data/refs/TerraDiT_Omega_ECCV.bib"
+  thumbnail: "tn/images/TerraDiT_Omega.png"
+  description: "A diffusion transformer for satellite imagery that is promptable with any geospatial primitive (polygons, polylines, bounding boxes, points) grounded in text."
+
+TTE_ECCV:
+  title: "Tessellating The Earth"
+  authors:
+    - "Dan Cher"
+    - "Hamza Iqbal"
+    - "Eric Xing"
+    - "Brian Wei"
+    - "Nathan Jacobs"
+  venue: "European Conference on Computer Vision (ECCV)"
+  year: 2026
+  links:
+    arxiv: "https://arxiv.org/abs/2606.27514"
+    code: "https://github.com/mvrl/TTE"
+    website: "https://dcher95.github.io/TTE/index.html"
+    bibtex: "data/refs/TTE_ECCV.bib"
+  thumbnail: "tn/images/TTE.png"
+  description: "A geolocation encoder that learns representations by tessellating the Earth's sphere using Voronoi partitioning."
+
 QuARI_NIPS:
   title: "QuARI: Query Adaptive Retrieval Improvement"
   authors:
@@ -12,7 +48,7 @@ QuARI_NIPS:
   venue: "The Thirty-Ninth Annual Conference on Neural Information Processing Systems (NeurIPS)"
   year: 2025
   thumbnail: "tn/images/QuARI.png"
-  description: "Hypernetwork-based framework for dynamic database feature adapation, for retrieval and large-scale reranking."
+  description: "Hypernetwork-based framework for dynamic database feature adaptation, for retrieval and large-scale reranking."
 
 
 RCME:
@@ -48,7 +84,7 @@ GenStereo:
   description: "GenStereo uses a diffusion-based approach with disparity-aware conditioning for strong performance in stereo image generation and unsupervised stereo matching."
 
 ConText-CIR_CVPR:
-  title: "ConText-CIR: Learning from Concept in Text for Composed Image Retrieval"
+  title: "ConText-CIR: Learning from Concepts in Text for Composed Image Retrieval"
   authors:
     - "Eric Xing"
     - "Pranavi Kolouju"
@@ -92,7 +128,7 @@ good4CIR_CVPRW:
   venue: "2nd Workshop on Harnessing Generative Models for Synthetic Visual Datasets at CVPR"
   year: 2025
   thumbnail: "tn/images/good4cir.png"
-  description: "Dataset synthesis pipeline to for training of powerful composed image retrieval models."
+  description: "Dataset synthesis pipeline for training of powerful composed image retrieval models."
   links:
     arxiv: "https://arxiv.org/abs/2503.17871"
     code: "https://github.com/SLUVisLab/good4cir"
@@ -110,10 +146,10 @@ PSM_ACMMM:
   venue: "ACM Multimedia"
   year: 2024
   links:
-    paper: "data/PSM_ACMMM.pdf"
+    paper: "data/papers/PSM_ACMMM.pdf"
     arxiv: "https://arxiv.org/abs/2408.07050"
     code: "https://github.com/mvrl/PSM"
-    bibtex: "data/PSM_ACMMM.bib"
+    bibtex: "data/refs/PSM_ACMMM.bib"
   thumbnail: "tn/images/PSM_Birds.png"
   description: "We develop a probabilistic, multi-scale, and metadata-aware embedding space that connects audio, text, and overhead imagery."
 
@@ -127,10 +163,10 @@ AAAI_ALISON:
   venue: "AAAI Conference on Artificial Intelligence (AAAI)"
   year: 2024
   links:
-    paper: "data/ALISON_AAAI.pdf"
+    paper: "data/papers/ALISON_AAAI.pdf"
     arxiv: "https://arxiv.org/abs/2402.00835"
     code: "https://github.com/EricX003/ALISON"
-    bibtex: "data/ALISON_AAAI.bib"
+    bibtex: "data/refs/ALISON_AAAI.bib"
   thumbnail: "tn/images/AAAI_ALISON.png"
   description: "An authorship obfuscation method that demonstrates a ~10x speedup over previous methods while outperforming them in terms of attack success, semantic preservation, and fluency."
 
@@ -146,13 +182,13 @@ ICPR_Uncertainty:
   venue: "International Conference on Pattern Recognition (ICPR)"
   year: 2022
   links:
-    paper: "data/CNN_Feature_Space_Uncertainty_ICPR2022_.pdf"
-    bibtex: "data/FeatureUncertainty_ICPR.bib"
+    paper: "data/papers/CNN_Feature_Space_Uncertainty_ICPR2022_.pdf"
+    bibtex: "data/refs/FeatureUncertainty_ICPR.bib"
   thumbnail: "tn/images/ICPR_Uncertainty.png"
   description: "Quantification and analysis of neural network decision-making criteria inconsistency and three algorithms to mitigate this inconsistency with minimal performance sacrifice."
 
 EMBC_Beware:
-  title: "Beware the Black-Box of Medical Image Generation: an Uncertainty Analysis by the Learned Feature Space"
+  title: "Beware the Black-Box of Medical Image Generation: An Uncertainty Analysis by the Learned Feature Space"
   authors:
     - "Yunni Qu"
     - "David Yan"
@@ -164,10 +200,10 @@ EMBC_Beware:
   venue: "International Conference of the IEEE Engineering in Medicine & Biology Society (EMBC)"
   year: 2022
   links:
-    paper: "data/Image_Generation_Feature_Uncertainty_EMBC2022_.pdf"
-    bibtex: "data/Beware_EMBC.bib"
+    paper: "data/papers/Image_Generation_Feature_Uncertainty_EMBC2022_.pdf"
+    bibtex: "data/refs/Beware_EMBC.bib"
   thumbnail: "tn/images/EMBC_Beware.png"
-  description: "Quantitative and clustering-based analyses of learned features spaces of U-Net architechtures for medical image generation."
+  description: "Quantitative and clustering-based analyses of learned feature spaces of U-Net architectures for medical image generation."
 
 SIGCSE_Toolkit:
   title: "A Toolkit for Assessments in Introductory Programming Courses"
@@ -177,10 +213,10 @@ SIGCSE_Toolkit:
   venue: "ACM Technical Symposium on Computer Science Education (SIGCSE)"
   year: 2022
   links:
-    paper: "data/Toolkit_SIGCSE.pdf"
-    bibtex: "data/Toolkit_SIGCSE.bib"
+    paper: "data/papers/Toolkit_SIGCSE.pdf"
+    bibtex: "data/refs/Toolkit_SIGCSE.bib"
   thumbnail: "tn/images/SIGCSE_Toolkit.png"
-  description: "A versatile online exam toolkit with plagarism and cheating detection as part of the vLab learning management system."
+  description: "A versatile online exam toolkit with plagiarism and cheating detection as part of the vLab learning management system."
   vLab: "https://www.vlab.academy/"
 
 Motorcycle_ICTD:
@@ -191,7 +227,7 @@ Motorcycle_ICTD:
   venue: "International Conference on Transportation and Development"
   year: 2022
   links:
-    paper: "data/Motorcycle_ASCEICTD2022.pdf"
-    bibtex: "data/Motorcycle_ICTD.bib"
+    paper: "data/papers/Motorcycle_ASCEICTD2022.pdf"
+    bibtex: "data/refs/Motorcycle_ICTD.bib"
   thumbnail: "tn/images/Motorcycle_ICTD.jpeg"
-  description: "Interpretability over a new state-of-the-art pipeline for motorcycle crash severity predicition for the analysis of factors contributing to severe motorcycle crashes."
+  description: "Interpretability over a new state-of-the-art pipeline for motorcycle crash severity prediction for the analysis of factors contributing to severe motorcycle crashes."
