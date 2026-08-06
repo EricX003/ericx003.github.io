@@ -61,7 +61,7 @@
         var maxLeft = window.scrollX + document.documentElement.clientWidth - preview.offsetWidth - 12;
         preview.style.top = (rect.bottom + window.scrollY + 6) + 'px';
         preview.style.left = Math.max(8, Math.min(left, maxLeft)) + 'px';
-      }, 500);
+      }, 350);
     });
 
     link.addEventListener('mouseleave', function () {
