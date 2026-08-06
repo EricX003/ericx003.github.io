@@ -156,7 +156,7 @@ span.highlight {
 #bibtex-toast {
   position: fixed;
   bottom: 16px;
-  left: 16px;
+  right: 16px;
   z-index: 11;
   padding: 6px 10px;
   background: #fff;
