@@ -6,14 +6,71 @@
         <p style="font-size:small;margin:0;">
           Thank you to <a href="https://github.com/jonbarron/jonbarron_website">Jon Barron</a> for the site template.
         </p>
-        <div style="transform:scale(0.35);transform-origin:bottom right;">
-          <script type="text/javascript" id="mapmyvisitors" src="//mapmyvisitors.com/map.js?d=dZaNRkTJMKbrvLnRQ-7BoCTpNcICaE-snS-v-OQecaA&cl=ffffff&w=a"></script>
-        </div>
       </td>
     </tr>
   </tbody>
 </table>
 </td></tr></tbody></table>
+
+<div id="bibtex-preview"></div>
+<div id="bibtex-toast">bibtex copied</div>
+
+<script>
+(function () {
+  var preview = document.getElementById('bibtex-preview');
+  var toast = document.getElementById('bibtex-toast');
+  var hoverTimer = null;
+  var toastTimer = null;
+
+  function showToast() {
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toast.classList.remove('show'); }, 2000);
+  }
+
+  function copyText(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(showToast);
+    } else {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); showToast(); } catch (e) {}
+      document.body.removeChild(ta);
+    }
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('.bibtex-copy'), function (link) {
+    var src = document.getElementById('bib-' + link.getAttribute('data-key'));
+    if (!src) return;
+
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      copyText(src.textContent);
+    });
+
+    link.addEventListener('mouseenter', function () {
+      hoverTimer = setTimeout(function () {
+        preview.textContent = src.textContent;
+        preview.style.display = 'block';
+        var rect = link.getBoundingClientRect();
+        var left = rect.left + window.scrollX;
+        var maxLeft = window.scrollX + document.documentElement.clientWidth - preview.offsetWidth - 12;
+        preview.style.top = (rect.bottom + window.scrollY + 6) + 'px';
+        preview.style.left = Math.max(8, Math.min(left, maxLeft)) + 'px';
+      }, 1000);
+    });
+
+    link.addEventListener('mouseleave', function () {
+      clearTimeout(hoverTimer);
+      preview.style.display = 'none';
+    });
+  });
+})();
+</script>
 
 </body>
 </html>

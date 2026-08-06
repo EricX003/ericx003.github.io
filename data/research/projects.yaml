@@ -1,233 +1,139 @@
-TerraDiT_Omega_ECCV:
-  title: "TerraDiT-Ω: Unified Spatial Control for Satellite Image Synthesis with Any Geospatial Primitive"
-  authors:
-    - "Brian Wei"
-    - "Srikumar Sastry"
-    - "Dan Cher"
-    - "Eric Xing"
-    - "Nathan Jacobs"
-  venue: "European Conference on Computer Vision (ECCV)"
-  year: 2026
-  links:
-    arxiv: "https://arxiv.org/abs/2606.31029"
-    code: "https://github.com/mvrl/TerraDiT"
-    website: "https://brian-j-wei.github.io/terradit-omega/index.html"
-    bibtex: "data/refs/TerraDiT_Omega_ECCV.bib"
-  thumbnail: "tn/images/TerraDiT_Omega.png"
-  description: "A diffusion transformer for satellite imagery that is promptable with any geospatial primitive (polygons, polylines, bounding boxes, points) grounded in text."
+# Each entry needs: bib (citation key in data/research/citations.bib), thumbnail,
+# description, links. Title, authors, venue, and year come from the bib entry.
+#
+# Optional per-entry overrides — title, venue, year — change ONLY what the site
+# displays (the copied bibtex stays verbatim from citations.bib). Use them where
+# the Google Scholar export is wrong or stale (lowercased acronyms, missing
+# venues, wrong years); they survive re-pasting a fresh Scholar export.
+# Venue abbreviations/bolding: data/research/venues.yaml. Page order = file order.
+
+
 
 TTE_ECCV:
-  title: "Tessellating The Earth"
-  authors:
-    - "Dan Cher"
-    - "Hamza Iqbal"
-    - "Eric Xing"
-    - "Brian Wei"
-    - "Nathan Jacobs"
-  venue: "European Conference on Computer Vision (ECCV)"
-  year: 2026
+  bib: cher2026tessellating
+  venue: "European Conference on Computer Vision"  # accepted at ECCV'26; Scholar still has the arXiv preprint
+  thumbnail: "tn/images/TTE.png"
+  description: "A geolocation encoder that learns representations by tessellating the Earth's sphere using Voronoi partitioning."
   links:
     arxiv: "https://arxiv.org/abs/2606.27514"
     code: "https://github.com/mvrl/TTE"
     website: "https://dcher95.github.io/TTE/index.html"
-    bibtex: "data/refs/TTE_ECCV.bib"
-  thumbnail: "tn/images/TTE.png"
-  description: "A geolocation encoder that learns representations by tessellating the Earth's sphere using Voronoi partitioning."
+
+TerraDiT_Omega_ECCV:
+  bib: wei2026terradit
+  venue: "European Conference on Computer Vision"  # accepted at ECCV'26; Scholar still has the arXiv preprint
+  thumbnail: "tn/images/TerraDiT_Omega.png"
+  description: "A diffusion transformer for satellite imagery that is promptable with any geospatial primitive (polygons, polylines, bounding boxes, points) grounded in text."
+  links:
+    arxiv: "https://arxiv.org/abs/2606.31029"
+    code: "https://github.com/mvrl/TerraDiT"
+    website: "https://brian-j-wei.github.io/terradit-omega/index.html"
 
 QuARI_NIPS:
-  title: "QuARI: Query Adaptive Retrieval Improvement"
-  authors:
-    - "Eric Xing"
-    - "Abby Stylianou"
-    - "Robert Pless"
-    - "Nathan Jacobs"
+  bib: xing2026quari
+  title: "QuARI: Query Adaptive Retrieval Improvement"  # Scholar lowercases QuARI
+  year: 2025  # NeurIPS'25; Scholar dates the proceedings volume 2026
+  thumbnail: "tn/images/QuARI.png"
+  description: "Hypernetwork-based framework for dynamic database feature adaptation, for retrieval and large-scale reranking."
   links:
     arxiv: "https://arxiv.org/abs/2505.21647"
     code: "https://github.com/mvrl/QuARI"
     website: "https://ericx003.github.io/proj/quari/"
-  venue: "The Thirty-Ninth Annual Conference on Neural Information Processing Systems (NeurIPS)"
-  year: 2025
-  thumbnail: "tn/images/QuARI.png"
-  description: "Hypernetwork-based framework for dynamic database feature adaptation, for retrieval and large-scale reranking."
-
 
 RCME:
-  title: "Global and Local Entailment Learning for Natural World Imagery"
-  authors:
-    - "Srikumar Sastry"
-    - "Aayush Dhakal"
-    - "Eric Xing"
-    - "Subash Khanal"
-    - "Nathan Jacobs"
-  venue: "International Conference on Computer Vision (ICCV)"
-  year: 2025
-  links:
-    website: "https://vishu26.github.io/RCME/index.html"
-    arXiv: "https://arxiv.org/abs/2506.21476"
-  description: "We introduce a framework that explicitly enforces the modeling of transitivity-enforced entailment for the partial order of concepts within vision-language models."
+  bib: sastry2025global
+  title: "Global and Local Entailment Learning for Natural World Imagery"  # restore title case
   thumbnail: "tn/images/rcme_iccv.png"
+  description: "We introduce a framework that explicitly enforces the modeling of transitivity-enforced entailment for the partial order of concepts within vision-language models."
+  links:
+    arxiv: "https://arxiv.org/abs/2506.21476"
+    website: "https://vishu26.github.io/RCME/index.html"
 
 GenStereo:
-  title: "GenStereo: Towards Open-World Generation of Stereo Images and Unsupervised Matching"
-  authors:
-    - "Feng Qiao"
-    - "Zhexiao Xiong"
-    - "Eric Xing"
-    - "Nathan Jacobs"
+  bib: qiao2025towards
+  title: "Towards Open-World Generation of Stereo Images and Unsupervised Matching"  # restore title case
   thumbnail: "tn/images/GenStereo.png"
-  links:
-    website: "https://qjizhi.github.io/genstereo"
-    arXiv: "https://arxiv.org/abs/2503.12720"
-    code: "https://github.com/Qjizhi/GenStereo"
-  year: 2025
-  venue: "International Conference on Computer Vision (ICCV)"
   description: "GenStereo uses a diffusion-based approach with disparity-aware conditioning for strong performance in stereo image generation and unsupervised stereo matching."
+  links:
+    arxiv: "https://arxiv.org/abs/2503.12720"
+    code: "https://github.com/Qjizhi/GenStereo"
+    website: "https://qjizhi.github.io/genstereo"
 
 ConText-CIR_CVPR:
-  title: "ConText-CIR: Learning from Concepts in Text for Composed Image Retrieval"
-  authors:
-    - "Eric Xing"
-    - "Pranavi Kolouju"
-    - "Robert Pless"
-    - "Abby Stylianou"
-    - "Nathan Jacobs"
+  bib: xing2025context
+  title: "ConText-CIR: Learning from Concepts in Text for Composed Image Retrieval"  # Scholar mangles ConText-CIR
+  thumbnail: "tn/images/contextcir.png"
+  description: "State-of-the-art composed image retrieval by bootstrapping learning from concept representations."
   links:
     arxiv: "https://arxiv.org/abs/2505.20764"
     code: "https://github.com/mvrl/ConText-CIR"
     website: "https://ericx003.github.io/proj/context_cir/"
-  venue: "IEEE Conference on Computer Vision and Pattern Recognition (CVPR)"
-  thumbnail: "tn/images/contextcir.png"
-  year: 2025
-  description: "State-of-the-art composed image retrieval by bootstrapping learning from concept representations."
 
 RANGE_CVPR:
-  title: "RANGE: Retrieval Augmented Neural Fields for Multi-Resolution Geo-Embeddings"
-  authors:
-    - "Aayush Dhakal"
-    - "Srikumar Sastry"
-    - "Subash Khanal"
-    - "Adeel Ahmad"
-    - "Eric Xing"
-    - "Nathan Jacobs"
-  venue: "IEEE Conference on Computer Vision and Pattern Recognition (CVPR)"
+  bib: dhakal2025range
+  title: "RANGE: Retrieval Augmented Neural Fields for Multi-Resolution Geo-Embeddings"  # Scholar lowercases RANGE
+  thumbnail: "tn/images/range.png"
+  description: "We develop a retrieval-augmented strategy for geospatial representation learning, significantly improving performance on downstream tasks."
   links:
     arxiv: "https://arxiv.org/abs/2502.19781"
     code: "https://github.com/mvrl/RANGE"
-  thumbnail: "tn/images/range.png"
-  year: 2025
-  description: "We develop a retrieval-augmented strategy for geospatial representation learning, significantly improving performance on downstream tasks."
 
 good4CIR_CVPRW:
-  title: "good4cir: Generating Detailed Synthetic Captions for Composed Image Retrieval"
-  authors:
-    - "Pranavi Kolouju"
-    - "Eric Xing"
-    - "Robert Pless"
-    - "Nathan Jacobs"
-    - "Abby Stylianou"
-  venue: "2nd Workshop on Harnessing Generative Models for Synthetic Visual Datasets at CVPR"
-  year: 2025
+  bib: kolouju2025good4cir
+  title: "good4cir: Generating Detailed Synthetic Captions for Composed Image Retrieval"  # restore title case
   thumbnail: "tn/images/good4cir.png"
   description: "Dataset synthesis pipeline for training of powerful composed image retrieval models."
   links:
     arxiv: "https://arxiv.org/abs/2503.17871"
     code: "https://github.com/SLUVisLab/good4cir"
-    
+
 PSM_ACMMM:
-  title: "PSM: Learning Probabilistic Embeddings for Multi-scale Zero-Shot Soundscape Mapping"
-  authors:
-    - "Subash Khanal"
-    - "Eric Xing"
-    - "Srikumar Sastry"
-    - "Aayush Dhakal"
-    - "Zhexiao Xiong"
-    - "Adeel Ahmad"
-    - "Nathan Jacobs"
-  venue: "ACM Multimedia"
-  year: 2024
+  bib: khanal2024psm
+  thumbnail: "tn/images/PSM_Birds.png"
+  description: "We develop a probabilistic, multi-scale, and metadata-aware embedding space that connects audio, text, and overhead imagery."
   links:
     paper: "data/papers/PSM_ACMMM.pdf"
     arxiv: "https://arxiv.org/abs/2408.07050"
     code: "https://github.com/mvrl/PSM"
-    bibtex: "data/refs/PSM_ACMMM.bib"
-  thumbnail: "tn/images/PSM_Birds.png"
-  description: "We develop a probabilistic, multi-scale, and metadata-aware embedding space that connects audio, text, and overhead imagery."
 
 AAAI_ALISON:
-  title: "ALISON: Fast and Effective Stylometric Authorship Obfuscation"
-  authors:
-    - "Eric Xing"
-    - "Saranya Venkatraman"
-    - "Thai Le"
-    - "Dongwon Lee"
-  venue: "AAAI Conference on Artificial Intelligence (AAAI)"
-  year: 2024
+  bib: xing2024alison
+  venue: "AAAI Conference on Artificial Intelligence"  # Scholar's booktitle carries arXiv noise
+  thumbnail: "tn/images/AAAI_ALISON.png"
+  description: "An authorship obfuscation method that demonstrates a ~10x speedup over previous methods while outperforming them in terms of attack success, semantic preservation, and fluency."
   links:
     paper: "data/papers/ALISON_AAAI.pdf"
     arxiv: "https://arxiv.org/abs/2402.00835"
     code: "https://github.com/EricX003/ALISON"
-    bibtex: "data/refs/ALISON_AAAI.bib"
-  thumbnail: "tn/images/AAAI_ALISON.png"
-  description: "An authorship obfuscation method that demonstrates a ~10x speedup over previous methods while outperforming them in terms of attack success, semantic preservation, and fluency."
 
 ICPR_Uncertainty:
-  title: "Neural Network Decision-Making Criteria Consistency Analysis via Inputs Sensitivity"
-  authors:
-    - "Eric Xing"
-    - "Liangliang Liu"
-    - "Xin Xing"
-    - "Yunni Qu"
-    - "Nathan Jacobs"
-    - "Gongbo Liang"
-  venue: "International Conference on Pattern Recognition (ICPR)"
-  year: 2022
-  links:
-    paper: "data/papers/CNN_Feature_Space_Uncertainty_ICPR2022_.pdf"
-    bibtex: "data/refs/FeatureUncertainty_ICPR.bib"
+  bib: xing2022neural
+  title: "Neural Network Decision-Making Criteria Consistency Analysis via Inputs Sensitivity"  # restore title case
   thumbnail: "tn/images/ICPR_Uncertainty.png"
   description: "Quantification and analysis of neural network decision-making criteria inconsistency and three algorithms to mitigate this inconsistency with minimal performance sacrifice."
+  links:
+    paper: "data/papers/CNN_Feature_Space_Uncertainty_ICPR2022_.pdf"
 
 EMBC_Beware:
-  title: "Beware the Black-Box of Medical Image Generation: An Uncertainty Analysis by the Learned Feature Space"
-  authors:
-    - "Yunni Qu"
-    - "David Yan"
-    - "Eric Xing"
-    - "Fengbo Zheng"
-    - "Jie Zhang"
-    - "Liangliang Liu"
-    - "Gongbo Liang"
-  venue: "International Conference of the IEEE Engineering in Medicine & Biology Society (EMBC)"
-  year: 2022
-  links:
-    paper: "data/papers/Image_Generation_Feature_Uncertainty_EMBC2022_.pdf"
-    bibtex: "data/refs/Beware_EMBC.bib"
+  bib: qu2022beware
+  title: "Beware the Black-Box of Medical Image Generation: An Uncertainty Analysis by the Learned Feature Space"  # published title capitalizes 'An'
   thumbnail: "tn/images/EMBC_Beware.png"
   description: "Quantitative and clustering-based analyses of learned feature spaces of U-Net architectures for medical image generation."
+  links:
+    paper: "data/papers/Image_Generation_Feature_Uncertainty_EMBC2022_.pdf"
 
 SIGCSE_Toolkit:
-  title: "A Toolkit for Assessments in Introductory Programming Courses"
-  authors:
-    - "Eric Xing"
-    - "Guangming Xing"
-  venue: "ACM Technical Symposium on Computer Science Education (SIGCSE)"
-  year: 2022
+  bib: xing2022toolkit
+  year: 2023  # 54th SIGCSE TS was March 2023; Scholar says 2022
+  thumbnail: "tn/images/SIGCSE_Toolkit.png"
+  description: "A versatile online exam toolkit with plagiarism and cheating detection as part of the <a href=\"https://www.vlab.academy/\">vLab</a> learning management system."
   links:
     paper: "data/papers/Toolkit_SIGCSE.pdf"
-    bibtex: "data/refs/Toolkit_SIGCSE.bib"
-  thumbnail: "tn/images/SIGCSE_Toolkit.png"
-  description: "A versatile online exam toolkit with plagiarism and cheating detection as part of the vLab learning management system."
-  vLab: "https://www.vlab.academy/"
 
 Motorcycle_ICTD:
-  title: "Motorcycle Safety Investigation in Kentucky Using Machine and Deep Learning Techniques"
-  authors:
-    - "Eric Xing"
-    - "Kirolos Haleem"
-  venue: "International Conference on Transportation and Development"
-  year: 2022
-  links:
-    paper: "data/papers/Motorcycle_ASCEICTD2022.pdf"
-    bibtex: "data/refs/Motorcycle_ICTD.bib"
+  bib: xing2022motorcycle
+  title: "Motorcycle Safety Investigation in Kentucky Using Machine and Deep Learning Techniques"  # Scholar lowercases Kentucky
   thumbnail: "tn/images/Motorcycle_ICTD.jpeg"
   description: "Interpretability over a new state-of-the-art pipeline for motorcycle crash severity prediction for the analysis of factors contributing to severe motorcycle crashes."
+  links:
+    paper: "data/papers/Motorcycle_ASCEICTD2022.pdf"

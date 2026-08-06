@@ -133,3 +133,43 @@ h2 {
 span.highlight {
   background-color: #ffffd0;
 }
+
+/* BibTeX copy: hover preview (shown after a 1s hover) and copy toast.
+   Font stack approximates LaTeX \texttt (CMU Typewriter) with common fallbacks. */
+#bibtex-preview {
+  display: none;
+  position: absolute;
+  z-index: 10;
+  max-width: 620px;
+  padding: 10px 12px;
+  background: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  font-family: 'CMU Typewriter Text', 'Latin Modern Mono', 'Nimbus Mono PS', 'Courier New', monospace;
+  font-size: 12px;
+  line-height: 1.35;
+  color: #111;
+  white-space: pre;
+  overflow-x: auto;
+}
+
+#bibtex-toast {
+  position: fixed;
+  bottom: 16px;
+  left: 16px;
+  z-index: 11;
+  padding: 6px 10px;
+  background: #fff;
+  border: 1px solid #ddd;
+  color: #333;
+  font-family: 'CMU Typewriter Text', 'Latin Modern Mono', 'Nimbus Mono PS', 'Courier New', monospace;
+  font-size: 12px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+#bibtex-toast.show {
+  opacity: 1;
+  visibility: visible;
+}

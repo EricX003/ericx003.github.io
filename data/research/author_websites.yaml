@@ -1,3 +1,9 @@
+# Many-to-one map from name variants (as they appear in bib entries) to the
+# canonical identity used on the site. Add a line here whenever a coauthor
+# publishes under a variant spelling or changes their name.
+author_aliases:
+  "Daniel Cher": "Dan Cher"
+
 author_websites:
   "Eric Xing": null 
   "Saranya Venkatraman": "https://ist.psu.edu/directory/szv4"

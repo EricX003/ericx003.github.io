@@ -1,0 +1,41 @@
+# Venue display rules, checked top-to-bottom; first substring match (case-insensitive
+# against the bib entry's booktitle/journal) wins. `alias` renders as ALIAS'YY after
+# the venue name; `notable: true` bolds it. Order matters: keep more-specific
+# matches (workshops) above the parent venue.
+venues:
+  - match: "Harnessing Generative Models"
+    alias: "CVPRW"
+    notable: false
+  - match: "Computer Vision and Pattern Recognition Workshops"
+    alias: "CVPRW"
+    notable: false
+  - match: "Neural Information Processing Systems"
+    alias: "NeurIPS"
+    notable: true
+  - match: "Computer Vision and Pattern Recognition"
+    alias: "CVPR"
+    notable: true
+  - match: "International Conference on Computer Vision"
+    alias: "ICCV"
+    notable: true
+  - match: "European Conference on Computer Vision"
+    alias: "ECCV"
+    notable: true
+  - match: "AAAI"
+    alias: "AAAI"
+    notable: true
+  - match: "Multimedia"
+    alias: "ACM MM"
+    notable: false
+  - match: "Pattern Recognition"
+    alias: "ICPR"
+    notable: false
+  - match: "Engineering in Medicine"
+    alias: "EMBC"
+    notable: false
+  - match: "Computer Science Education"
+    alias: "SIGCSE"
+    notable: false
+  - match: "Transportation and Development"
+    alias: "ICTD"
+    notable: false
