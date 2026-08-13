@@ -7,15 +7,32 @@
 
     <meta name="author" content="Eric Xing">
     <meta name="description" content="Eric Xing — CS PhD student in the Multimodal Vision Research Lab at Washington University in St. Louis. NeurIPS, CVPR, AAAI.">
+    <meta name="keywords" content="Eric Xing, Washington University in St. Louis, WashU, Multimodal Vision Research Lab, multimodal retrieval, vision-language models, composed image retrieval, computer vision, machine learning, PhD">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--
+      Google Search Console verification:
+      1. Go to https://search.google.com/search-console and add property "ericx003.github.io"
+      2. Choose the "HTML tag" verification method
+      3. Paste the tag Google gives you below, push, then click Verify
+    -->
     <link rel="canonical" href="https://ericx003.github.io/">
 
     <meta property="og:title" content="Eric Xing — Multimodal Retrieval &amp; Vision-Language Models | WashU">
     <meta property="og:description" content="CS PhD student in the Multimodal Vision Research Lab at Washington University in St. Louis. Multimodal retrieval, vision-language models, and efficient search.">
     <meta property="og:url" content="https://ericx003.github.io/">
     <meta property="og:type" content="profile">
+    <meta property="og:site_name" content="Eric Xing">
     <meta property="og:image" content="https://ericx003.github.io/images/og_portrait.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="1200">
+    <meta property="og:image:alt" content="Eric Xing">
+    <meta property="profile:first_name" content="Eric">
+    <meta property="profile:last_name" content="Xing">
+
     <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Eric Xing — Multimodal Retrieval &amp; Vision-Language Models | WashU">
+    <meta name="twitter:description" content="CS PhD student in the Multimodal Vision Research Lab at Washington University in St. Louis. Multimodal retrieval, vision-language models, and efficient search.">
+    <meta name="twitter:image" content="https://ericx003.github.io/images/og_portrait.png">
 
     <script type="application/ld+json">
     {
@@ -65,11 +82,12 @@
                   Eric Xing
                 </p>
                 <p>
-                  I'm a 4th year PhD student in the <a href="https://mvrl.cse.wustl.edu/">Multimodal Vision Research Lab</a> at <a href="https://wustl.edu/">WashU</a> advised by <a href="https://jacobsn.github.io/">Nathan Jacobs</a>. I've generally been working on multimodal learning and search.
-
-                  I did my BS in Computer Science with a minor in Math at <a href="https://www.wku.edu/">Western Kentucky University</a>. 
-                  
+                  I'm a 4th year PhD student in the <a href="https://mvrl.cse.wustl.edu/">Multimodal Vision Research Lab</a> at <a href="https://wustl.edu/">WashU</a> advised by <a href="https://jacobsn.github.io/">Nathan Jacobs</a>. I've generally been working on multimodal alignment for visual search and reranking.
                 </p>
+                <p>
+                  Previously, I was supervised by <a href="https://ist.psu.edu/directory/dul13">Dongwon Lee</a> and <a href="https://apps.tamusa.edu/course-information/my-profile/faculty-Profile.php?ID=586">Gongbo Liang</a>, working on adversarial stylometry and model robustness. I received my BS in Computer Science with a minor in Math from <a href="https://www.wku.edu/">Western Kentucky University</a> at 17.
+                </p>
+                  
 
 
                 <p style="text-align:center">
@@ -90,7 +108,7 @@
               <td style="padding:20px;width:100%;vertical-align:middle">
                 <h2>Research</h2>
                 <p>
-                  Lately, my research has spanned vision-language models and multimodal learning. I am currently interested in efficient search paradigms, multimodal reranking, and hierarchical representation learning.  
+                  Lately, my research has focused on algorithms for multimodal representation learning and alignment. I've been developing state-of-the-art methods for text-image search / reranking, geospatial representation learning, and more.  I am currently interested in efficient search paradigms, multimodal reranking, and hierarchical representation learning.  
                 </p>
               </td>
             </tr>
@@ -528,7 +546,7 @@
         var maxLeft = window.scrollX + document.documentElement.clientWidth - preview.offsetWidth - 12;
         preview.style.top = (rect.bottom + window.scrollY + 6) + 'px';
         preview.style.left = Math.max(8, Math.min(left, maxLeft)) + 'px';
-      }, 1000);
+      }, 350);
     });
 
     link.addEventListener('mouseleave', function () {
