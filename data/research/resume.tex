@@ -1,0 +1,452 @@
+%-------------------------
+% Resume in Latex
+% Author : Eric Xing
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{hyphenat}
+\usepackage{fontawesome}
+\usepackage{academicons}
+\usepackage{refcount}   % expandable \getrefnumber, used by \pubcite
+
+% Machine readability: \nolig breaks an f-ligature so the text layer stays
+% greppable. XeTeX maps ff/fi/fl to their Unicode ligature codepoints
+% (U+FB00...), which resume parsers do not decompose -- "efficient" extracts as
+% "e<U+FB00>icient" and matches no keyword search. Disabling ligatures globally
+% (fontspec Ligatures=NoCommon) reflows the document onto a third page, so wrap
+% only the affected words. `make check` lists any that get missed.
+\newcommand{\nolig}{\/}
+
+
+%---------- FONT OPTIONS ----------
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
+
+% serif
+% \usepackage{CormorantGaramond}
+% \usepackage{charter}
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+% \pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+
+\newcommand{\resumeSubheading}[2]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\activitySubheading}[2]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{\small#1} \\
+      \textit{\small#2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+
+\newcommand{\resumeSubSubheading}[2]{
+    \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+
+\newcommand{\resumeEducationHeading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+      %\textit{\small#5} & \textit{\small #6} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+
+\newcommand{\resumeProjectHeading}[2]{
+    \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+
+\newcommand{\resumeOrganizationHeading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & \textit{\small #2} \\
+      \textit{\small#3}
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+\makeatletter
+
+% \pub[<key>]{<citation>}{<url>} -- entries number themselves; the optional
+% key makes an entry citable from prose with \pubcite.
+\newcommand{\pub}[3][]{%
+  \item%
+  \if\relax\detokenize{#1}\relax\else\label{pub:#1}\fi%
+  #2%
+  \if\relax\detokenize{#3}\relax
+    \vspace{-5pt}
+  \else
+    \hspace{3pt}\href{#3}{[link]}\vspace{-5pt}%
+  \fi
+}
+\makeatother
+
+% \pubcite{key1,key2,...} -> "[1, 3, 7]".  Indices come from the \pub keys and
+% are sorted numerically, so the list stays in order when entries are added or
+% move between the Under Review and Publications lists.  Undefined keys warn in
+% the log and render as 0 (they also read as 0 on the first of the two passes).
+\ExplSyntaxOn
+\msg_new:nnn { xing } { pubcite-undefined }
+  { Publication~key~'#1'~is~undefined~--~check~the~\string\pub\space key. }
+\clist_new:N \l__xing_pubcite_clist
+% enumitem's ref= stores the value brace-wrapped ({7}), so strip one brace level
+% with \tl_head:f before doing arithmetic on it.
+\cs_new:Npn \__xing_pubnum:n #1
+  { \int_eval:n { \tl_head:f { \getrefnumber { pub:#1 } } } }
+\cs_new_protected:Npn \__xing_pubcite_add:n #1
+  {
+    \refused { pub:#1 }   % make a stale/cold .aux trigger LaTeX's rerun warning
+    \int_compare:nNnT { \__xing_pubnum:n {#1} } = { 0 }
+      { \msg_warning:nnn { xing } { pubcite-undefined } {#1} }
+    \clist_put_right:Nx \l__xing_pubcite_clist { \__xing_pubnum:n {#1} }
+  }
+\NewDocumentCommand \pubcite { m }
+  {
+    \clist_clear:N \l__xing_pubcite_clist
+    \clist_map_inline:nn {#1} { \__xing_pubcite_add:n {##1} }
+    \clist_sort:Nn \l__xing_pubcite_clist
+      {
+        \int_compare:nNnTF {##1} > {##2}
+          { \sort_return_swapped: }
+          { \sort_return_same: }
+      }
+    \nobreakspace [ \clist_use:Nn \l__xing_pubcite_clist { ,~ } ]
+  }
+\ExplSyntaxOff
+
+% The publist environment is one continuously numbered list split across two
+% sections (Selected Publications, Under Review).  The first instance in the
+% document starts the series and every later one resumes it, so the sections can
+% be reordered freely.  Hard-coding series= on one list and resume*= on the other
+% breaks the build the moment the two sections swap places.
+\newif\ifxingpubliststarted
+\newenvironment{publist}
+  {%
+    \ifxingpubliststarted
+      \enumerate[resume*=publist]%
+    \else
+      \global\xingpubliststartedtrue
+      \enumerate[series=publist,label={[\arabic*]}\parindent-0.2\labelwidth\relax,ref=\arabic*]%
+    \fi
+  }
+  {\endenumerate}
+
+\newcommand{\alison}{\sf ALISON}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+%---------- HEADING ----------
+
+\begin{center}
+    \textbf{\Huge \scshape Eric Xing} \\ \vspace{3pt}
+    \small
+    \faEnvelopeO \hspace{.5pt} \href{mailto:e.xing@wustl.edu}{e.xing@wustl.edu}
+    \textbf{\textbar}
+    \aiGoogleScholar  \hspace{.5pt} \href{https://scholar.google.com/citations?user=a-RC9VkAAAAJ&hl=en}{Scholar}
+    \textbf{\textbar}
+    \faGithub \hspace{.5pt} \href{https://github.com/EricX003}{GitHub}
+    \textbf{\textbar}
+     \ComputerMouse \hspace{.5pt}\href{https://EricX003.github.io}{Website}
+    % \textbf{\textbar} 
+    % \faGlobe \hspace{.5pt} Bowling Green, Kentucky
+    
+\end{center}
+
+\section{Research Statement}
+My research focuses on developing multimodal representation learning algorithms which serve impactful applications of visual search. I've developed state-of-the-art models for multimodal alignment\pubcite{entailment,contextcir,psm}, ef\nolig ficient multimodal retrieval\pubcite{quari,quasi,ape}, and multimodal reranking\pubcite{quari}. I publish in top computer vision and machine learning conferences, including CVPR, NeurIPS, ICCV, ECCV, and AAAI. 
+
+%----------- EDUCATION -----------
+
+\section{Education}
+  \vspace{3pt}
+  \resumeSubHeadingListStart
+    
+    \resumeEducationHeading
+      {Washington University in St. Louis}{St. Louis, MO}
+      {Ph.D. in Computer Science; Expected Graduation: Spring 2027}{Aug 2023 \textbf{--} Present}
+    \resumeEducationHeading
+      {Western Kentucky University}{Bowling Green, KY}
+      {B.S. in Computer Science with Minor in Mathematics, Summa Cum Laude; \textbf{GPA: 4.00}}{May 2019 \textbf{--} Aug 2023}
+    
+  \resumeSubHeadingListEnd
+
+%----------- WORK EXPERIENCE -----------
+
+\section{Experience}
+  \vspace{3pt}
+  \resumeSubHeadingListStart
+
+
+
+    \resumeSubheading
+      {Multimodal Vision Research Laboratory}{Aug 2023 \textbf{--} Present}
+        \resumeItemListStart
+            \resumeItem{Led collaboration across 4 universities with the National Center for Missing and Exploited Children to develop image search systems to support analyst investigations, resulting in multiple publications\pubcite{contextcir,quari,quasi}.}
+            \resumeItem{Developed text-alignment algorithms to support the prediction of food system instability by NASA Harvest and the Famine Early Warning Systems Network.}
+            \resumeItem{Led collaboration with WashU Public Health to develop text-guided surveying to automate the estimation of spatial inequities\pubcite{spatialinequities}.}
+            \resumeItem{Worked on three state-of-the-art algorithms for Earth representation based on spatial tessellation, spatio-temporal tessellation, and retrieval augmentation\pubcite{tte,chronosphere,range}.}
+            \resumeItem{Mentored BS/MS students across projects in representation learning, reinforcement learning, and applied collaborations. }
+
+        \resumeItemListEnd
+
+    \resumeSubheading
+      {Pinterest}{Sep 2025 \textbf{--} Dec 2025}
+      \resumeItemListStart
+        \resumeItem{Trained foundation models for multimodal search as an ML intern with the Advanced Technologies Group.}
+        \resumeItem{Developed training, evaluation, and deployment infrastructure on production data.}
+        \resumeItem{Proposed joint hypernetwork-encoder architecture for unified search and reranking across Pinterest's image indices, improving recall and reranking scalability.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Student Researcher @ Penn State}{May 2022 \textbf{--} Aug 2023}
+        \resumeItemListStart
+            \resumeItem{Proposed the novel authorship obfuscation system {\alison} based on greedy replacement of important part-of-speech sequences\pubcite{alison}.}
+            \resumeItem{Demonstrated that {\alison} achieves greater attack success while maintaining a higher degree of semantic preservation and significantly reducing runtime.}
+            \resumeItem{Performed label entropy, parameter, and interpretability analyses on {\alison}.}
+        \resumeItemListEnd
+    
+    % \resumeSubheading
+    %   {Student Researcher @ Western Kentucky University}{Jul 2021 \textbf{--} May 2022}
+    %     \resumeItemListStart
+    %         \resumeItem{Managed extensive training over CNN and ViT architectures.}
+    %         \resumeItem{Developed ensemble-based training algorithms for robust and consistent medical decision making.}
+    %     \resumeItemListEnd
+    
+
+  \resumeSubHeadingListEnd
+
+
+%----------- AWARDS & ACHIEVEMENTS -----------
+
+\section{Selected Publications}
+\begin{publist}
+
+    \pub[quari]{\textbf{Xing, E.}, Stylianou, A., Pless, R., \& Jacobs, N. \textit{QuARI: Query Adaptive Retrieval Improvement}. The Thirty-Ninth Annual Conference on Neural Information Processing Systems (\textbf{NeurIPS'25}).}{https://doi.org/10.48550/arXiv.2505.21647}
+
+    \pub[contextcir]{\textbf{Xing, E.}, Kolouju, P., Pless, R., Stylianou, A. \& Jacobs, N. \textit{ConText-CIR: Learning from Concepts in Text for Composed Image Retrieval}. The IEEE/CVF Conference on Computer Vision and Pattern Recognition 2025 (\textbf{CVPR'25}).}{https://doi.org/10.48550/arXiv.2505.20764}
+    
+    \pub[alison]{\textbf{Xing, E.}, Venkatraman, S., Le, T., \& Lee, D. \textit{{\sf ALISON}: Fast and Effective Stylometric Authorship Obfuscation}. The 38th Annual AAAI Conference on Artificial Intelligence (\textbf{AAAI'24}).}{https://arxiv.org/abs/2402.00835}
+
+    \pub[icpr]{\textbf{Xing, E.}, Liu, L., Xing, X., Qu, Y., Jacobs, N., \& Liang, G. \textit{Neural Network Decision-Making Criteria Consistency Analysis via Inputs Sensitivity.} 2022 International Conference on Pattern Recognition (\textbf{ICPR’22}), pp. 2328-2334.}{https://doi.org/10.1109/ICPR56361.2022.9956394}
+
+    
+    \pub[good4cir]{Kolouju, P., \textbf{Xing, E.}, Pless, R., Jacobs, N., \& Stylianou, A. \textit{good4cir: Generating Detailed Synthetic Captions for Composed Image Retrieval}. The IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops 2025 (\textbf{CVPRW'25}).}{https://doi.org/10.48550/arXiv.2503.17871}
+    
+    \pub[psm]{Khanal, S., \textbf{Xing, E.}, Dhakal, A., Sastry, S., Xiong, Z., Ahmad, A., \& Jacobs, N. \textit{PSM: Learning Probabilistic Embeddings for Multi-scale Zero-Shot Soundscape Mapping}. The 32nd ACM Multimedia Conference (\textbf{ACMMM'24}).}{https://doi.org/10.48550/arXiv.2408.07050}
+
+    \pub[entailment]{Sastry, S., Dhakal, A., \textbf{Xing, E.}, Khanal, S. \& Jacobs, N. \textit{Global and Local Entailment Learning for Natural World Imagery}. The IEEE/CVF International Conference on Computer Vision 2025 (\textbf{ICCV'25}).}{https://doi.org/10.48550/arXiv.2506.21476}
+
+    \pub[tte]{Cher, D., Iqbal, H., \textbf{Xing, E.}, Wei, B., \& Jacobs, N. \textit{Tessellating The Earth}. European Conference on Computer Vision (Accepted to \textbf{ECCV'26}).}{}
+
+    \pub[spatialinequities]{Leão, A., Banda, B.,  \textbf{Xing, E.}, Gudapati, S., Ahmad, A., Lin, J., Sastry, S., Jacobs, N. \& Reis, R. \textit{Applications of Artificial Intelligence in Public Health: Analyzing Built Environment and Addressing Spatial Inequities}. Journal of Public Health, 2025.}{https://doi.org/10.1007/s10389-025-02444-x}
+    
+    \pub[genstereo]{Qiao, F., Xiong, Z., \textbf{Xing, E.}, \& Jacobs, N. \textit{Towards Open-World Generation of Stereo Images and Unsupervised Matching}. The IEEE/CVF International Conference on Computer Vision 2025 (\textbf{ICCV'25}).}{https://doi.org/10.48550/arXiv.2503.12720}
+
+    \pub[geodit]{Wei, B., Sastry, S., Cher, D., \textbf{Xing, E.}, \& Jacobs, N. \textit{TerraDiT-$\Omega$: Unified Spatial Control for Satellite Image Synthesis with Any Geospatial Primitive}. European Conference on Computer Vision (Accepted to \textbf{ECCV'26}).}{}
+
+    \pub[range]{Dhakal, A., Sastry, S., Khanal, S., Ahmad, A., \textbf{Xing, E.}, \& Jacobs, N. \textit{RANGE: Retrieval Augmented Neural Fields for Multi-Resolution Geo-Embeddings}. The IEEE/CVF Conference on Computer Vision and Pattern Recognition 2025 (\textbf{CVPR'25}).}{https://doi.org/10.48550/arXiv.2502.19781}
+
+
+
+  \end{publist}
+
+  \section{Under Review}
+\begin{publist}
+
+\pub[quasi]{\textbf{Xing, E.}, Li, V., Cher, D., \& Jacobs, N. \textit{QuASI: Query-Adaptive Sparse Indexing for Multimodal Search}. Annual AAAI Conference on Artificial Intelligence (\textbf{AAAI'27} Submission).}{}
+
+\pub[ape]{\textbf{Xing, E.}, Wei, B., Cher, D., \& Jacobs, N. \textit{Learning to Allocate Tokens for Vision Transformers}. Conference on Neural Information Processing Systems (\textbf{NeurIPS'26} Submission).}{}
+
+\pub[chronosphere]{Cher, D., \textbf{Xing, E.}, Li, K., Wei, B., Corley, I., \& Jacobs, N. \textit{Chronosphere: Space-Time Tessellation of Local Climate Experts}. Annual AAAI Conference on Artificial Intelligence (\textbf{AAAI'27} Submission).}{}
+
+\pub[plants]{Cher, D., Wei, B., Sastry, S., \textbf{Xing, E.}, Jarosz, P., Sandvig, R., \& Jacobs, N. \textit{Phenological Plant Embeddings}. Conference on Neural Information Processing Systems (\textbf{NeurIPS'26} Submission).}{}
+
+\end{publist}
+
+
+%----------- ARCHIVE -----------
+% Cut for length. To restore: uncomment a line and move it into a list above;
+% numbering and every \pubcite reference update themselves on the next build.
+% \pub[sigcse]{\textbf{Xing, E.} \& Xing, G. \textit{A Toolkit for Assessments in Introductory Programming Courses.} Proceedings of the 54th ACM Technical Symposium on Computer Science Education (SIGCSE'23), p. 1285.}{https://doi.org/10.1145/3545947.3576231}
+% \pub[embc]{Qu, Y., Yan, D., \textbf{Xing, E.}, Zheng, F., Zhang, J., Liu, L., \& Liang, G. \textit{Beware the Black-Box of Medical Image Generation: an Uncertainty Analysis by the Learned Feature Space.} 2022 International Conference of the IEEE Engineering in Medicine \& Biology Society (EMBC’22), pp. 3849-3853.}{https://doi.org/10.1109/EMBC48229.2022.9871921}
+% \pub[motorcycle]{\textbf{Xing, E.} \& Haleem, K. \textit{Motorcycle Safety Investigation in Kentucky Using Machine and Deep Learning Techniques.} 2022 ASCE International Conference on Transportation and Development, pp. 68-80.}{https://doi.org/10.1061/9780784484319.007}
+
+
+
+\section{Awards and Service}
+  \vspace{2pt}
+  \resumeSubHeadingListStart
+    \small{\item{
+
+        McKelvey School of Engineering CSE Outstanding Scholar Award \\ \vspace{3pt}
+
+        Honors Designation (top 15\% of PhD students) -- WashU Computer Science and Engineering \\ \vspace{3pt}
+        
+        Computing Research Association Outstanding Undergraduate Researcher \textbf{--} Honorable Mention \\ \vspace{3pt}
+
+            \textbf{Reviewer}: NeurIPS, CVPR, ICCV, ECCV, AAAI, WACV, SIGIR, ACMMM
+
+        
+        
+        
+    }}
+  \resumeSubHeadingListEnd
+%----------- SKILLS -----------
+
+
+\section{Additional}
+  \vspace{2pt}
+  \resumeSubHeadingListStart
+    \small{\item{
+        \textbf{Languages: }{Python, C/C++, Java, JavaScript, SQL, Bash, MATLAB} \\ \vspace{3pt}
+        
+        \textbf{Tools: }{Docker, Kubernetes, AWS, Git, Weights \& Biases} \\ \vspace{3pt}
+        
+        \textbf{Libraries: }{PyTorch, PyTorch Lightning, Ray, Optuna, HuggingFace, DeepSpeed, TensorFlow, NumPy, Pandas, Scikit-Learn, Stanza, NLTK, Captum, Matplotlib} \\
+    }}
+
+    \small{
+    
+        % \item{
+        %     \textbf{Major Coursework: }{Advances in Computer Vision, Nonlinear Optimization, Bayesian Machine Learning, Reinforcement Learning, Text Mining, Machine Learning, Advanced Algorithms, Automata Theory and Compilers, Data Structures and Algorithm Analysis} \\ \vspace{3pt}
+            
+        %     \textbf{Other Coursework: }{Numerical Analysis, Multivariable Calculus, Discrete Mathematics, Linear Algebra} \\ \vspace{3pt}
+        % }
+        % \item{
+        %     \textbf{GRE: }{\textbf{336} \textit{(170 Quantitative, 166 Verbal)}, \textbf{5.5} Analytical Writing} \\ \vspace{3pt}
+        % }
+        \item{
+            US Citizen
+        }
+    
+    }
+  \resumeSubHeadingListEnd
+
+    
+
+  % \section{Additional}
+  % \vspace{2pt}
+  % \resumeSubHeadingListStart
+  %   \small{
+    
+  %       \item{
+  %           \textbf{Major Coursework: }{Advances in Computer Vision, Nonlinear Optimization, Bayesian Machine Learning, Reinforcement Learning, Text Mining, Machine Learning, Advanced Algorithms, Automata Theory and Compilers, Data Structures and Algorithm Analysis} \\ \vspace{3pt}
+            
+  %           \textbf{Other Coursework: }{Numerical Analysis, Multivariable Calculus, Discrete Mathematics, Linear Algebra} \\ \vspace{3pt}
+  %       }
+  %       \item{
+  %           \textbf{GRE: }{\textbf{336} \textit{(170 Quantitative, 166 Verbal)}, \textbf{5.5} Analytical Writing} \\ \vspace{3pt}
+  %       }
+  %       \item{
+  %           US Citizen
+  %       }
+    
+    
+  %   }
+  % \resumeSubHeadingListEnd
+    
+
+
+  % \section{Activities \& Service}
+  % \vspace{3pt}
+  % \resumeSubHeadingListStart
+
+  %   % \activitySubheading{Kelly Autism Program}
+  %   % {Tutor \textbf{--} Math and Computer Science, 2021 \textbf{--} 2022}
+  %   %     \resumeItemListStart
+  %   %         \resumeItem{Tutored university students with autism spectrum disorders in math and computer science twice weekly.}
+  %   %         \resumeItem{Provided over 100 hours of service, working with multiple students across a wide range of computer science, math, chemistry, and physics courses.}
+  %   %     \resumeItemListEnd
+    
+  %   % \activitySubheading{Western Kentucky University ACM Student Chapter}
+  %   % {President, 2023; Secretary 2022}
+  %   %     \resumeItemListStart
+  %   %         \resumeItem{Led biweekly artificial intelligence seminars to provide chapter members with the background and resources to apply common machine learning techniques.}
+  %   %         \resumeItem{Coordinated department outreach initiatives for the recruitment of underrepresented groups in computer science.}
+  %   %         \resumeItem{Led International Collegiate Programming Contest (ICPC) practice sessions.}
+  %   %     \resumeItemListEnd
+
+  %   \textbf{Reviewer}: CVPR, ICCV, NeurIPS, WACV, ACMMM
+    
+  % \resumeSubHeadingListEnd
+
+
+
+\end{document}

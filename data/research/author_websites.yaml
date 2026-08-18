@@ -3,6 +3,8 @@
 # publishes under a variant spelling or changes their name.
 author_aliases:
   "Daniel Cher": "Dan Cher"
+  # The paper prints "Vanja-Jehle"; they spell it Vajna-Jehle themselves.
+  "Janusch Vanja-Jehle": "Janusch Vajna-Jehle"
 
 author_websites:
   "Eric Xing": null 
@@ -31,3 +33,8 @@ author_websites:
   "Dan Cher": "https://dcher95.github.io/"
   "Brian Wei": "https://brian-j-wei.github.io/"
   "Hamza Iqbal": "https://1hamzaiqbal.github.io/"
+  "Clemens Mosig": "https://www.uni-leipzig.de/en/profile/mitarbeiter/clemens-mosig"
+  "Teja Kattenborn": "https://uni-freiburg.de/enr-geosense/team/kattenborn/"
+  "David Montero": "https://www.uni-leipzig.de/en/profile/mitarbeiter/david-montero"
+  "Janusch Vajna-Jehle": "https://uni-freiburg.de/enr-geosense/team/janusch_vajna_jehle/"
+  "John Brandt": "https://www.wri.org/profile/john-brandt"

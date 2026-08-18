@@ -1,6 +1,7 @@
 import html as html_lib
 import os
 import re
+import unicodedata
 from datetime import datetime
 
 import yaml
@@ -36,8 +37,17 @@ def parse_bibfile(file_path):
     return entries
 
 
+# LaTeX accent macro -> Unicode combining character, e.g. {\"u} -> u + U+0308.
+ACCENTS = {'`': '̀', "'": '́', '^': '̂', '~': '̃',
+           '=': '̄', '.': '̇', '"': '̈', 'v': '̌',
+           'c': '̧', 'u': '̆', 'H': '̋'}
+
+
 def delatex(s):
     """Convert the LaTeX constructs that appear in our bib entries to plain text."""
+    # Accents first: the brace-stripping below would otherwise destroy them.
+    s = re.sub(r'\{?\\([`\'^~="vcuH])\s*\{?([A-Za-z])\}?\}?',
+               lambda m: unicodedata.normalize('NFC', m.group(2) + ACCENTS[m.group(1)]), s)
     for old, new in [(r'$\Omega$', 'Ω'), (r'\Omega', 'Ω'), (r'\&', '&'),
                      ('$', ''), ('{', ''), ('}', '')]:
         s = s.replace(old, new)
@@ -50,6 +60,23 @@ def display_name(bib_author):
     if len(parts) == 2:
         return f'{parts[1]} {parts[0]}'
     return bib_author.strip()
+
+
+# Consortium papers (30+ authors) would otherwise bury the card and emit a
+# warning for every coauthor whose site we do not track.  Show the head of the
+# list through Eric and elide the rest.
+AUTHOR_LIMIT = 12
+AUTHOR_HEAD = 8
+
+
+def truncate_authors(authors):
+    """-> (authors to display, whether an 'et al.' should follow)."""
+    if len(authors) <= AUTHOR_LIMIT:
+        return authors, False
+    keep = AUTHOR_HEAD
+    if 'Eric Xing' in authors:
+        keep = max(keep, authors.index('Eric Xing') + 1)
+    return authors[:keep], True
 
 
 def venue_html(venue, year, venue_rules):
@@ -86,7 +113,9 @@ def generate_html(projects, bib_entries, author_websites, author_aliases, venue_
         # projects.yaml title/venue/year act as display-only overrides for when the
         # Google Scholar export is wrong or stale; the copied bibtex stays verbatim.
         title = project.get('title') or delatex(fields.get('title', ''))
-        authors = [display_name(a) for a in fields.get('author', '').split(' and ') if a.strip()]
+        authors = [display_name(delatex(a))
+                   for a in fields.get('author', '').split(' and ') if a.strip()]
+        authors, truncated = truncate_authors(authors)
         venue = project.get('venue') or delatex(fields.get('booktitle') or fields.get('journal', ''))
         year = project.get('year') or fields.get('year', '')
         thumbnail = project.get('thumbnail', '')
@@ -134,6 +163,8 @@ def generate_html(projects, bib_entries, author_websites, author_aliases, venue_
                 authors_html.append(canonical)
 
         html += ',\n        '.join(authors_html)
+        if truncated:
+            html += ', et al.'
 
         if venue or year:
             html += f'<br>\n        {venue_html(venue, year, venue_rules)}'

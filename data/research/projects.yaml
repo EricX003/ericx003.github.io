@@ -7,7 +7,36 @@
 # venues, wrong years); they survive re-pasting a fresh Scholar export.
 # Venue abbreviations/bolding: data/research/venues.yaml. Page order = file order.
 
+QuARI_NIPS:
+  bib: xing2026quari
+  title: "QuARI: Query Adaptive Retrieval Improvement"  # Scholar lowercases QuARI
+  year: 2025  # NeurIPS'25; Scholar dates the proceedings volume 2026
+  thumbnail: "tn/images/QuARI.png"
+  description: "Hypernetwork-based framework for dynamic database feature adaptation, for retrieval and large-scale reranking."
+  links:
+    arxiv: "https://arxiv.org/abs/2505.21647"
+    code: "https://github.com/mvrl/QuARI"
+    website: "https://ericx003.github.io/proj/quari/"
 
+ConText-CIR_CVPR:
+  bib: xing2025context
+  title: "ConText-CIR: Learning from Concepts in Text for Composed Image Retrieval"  # Scholar mangles ConText-CIR
+  thumbnail: "tn/images/contextcir.png"
+  description: "State-of-the-art composed image retrieval by bootstrapping learning from concept representations."
+  links:
+    arxiv: "https://arxiv.org/abs/2505.20764"
+    code: "https://github.com/mvrl/ConText-CIR"
+    website: "https://ericx003.github.io/proj/context_cir/"
+
+AAAI_ALISON:
+  bib: xing2024alison
+  venue: "AAAI Conference on Artificial Intelligence"  # Scholar's booktitle carries arXiv noise
+  thumbnail: "tn/images/AAAI_ALISON.png"
+  description: "An authorship obfuscation method that demonstrates a ~10x speedup over previous methods while outperforming them in terms of attack success, semantic preservation, and fluency."
+  links:
+    paper: "data/papers/ALISON_AAAI.pdf"
+    arxiv: "https://arxiv.org/abs/2402.00835"
+    code: "https://github.com/EricX003/ALISON"
 
 TTE_ECCV:
   bib: cher2026tessellating
@@ -29,17 +58,6 @@ TerraDiT_Omega_ECCV:
     code: "https://github.com/mvrl/TerraDiT"
     website: "https://brian-j-wei.github.io/terradit-omega/index.html"
 
-QuARI_NIPS:
-  bib: xing2026quari
-  title: "QuARI: Query Adaptive Retrieval Improvement"  # Scholar lowercases QuARI
-  year: 2025  # NeurIPS'25; Scholar dates the proceedings volume 2026
-  thumbnail: "tn/images/QuARI.png"
-  description: "Hypernetwork-based framework for dynamic database feature adaptation, for retrieval and large-scale reranking."
-  links:
-    arxiv: "https://arxiv.org/abs/2505.21647"
-    code: "https://github.com/mvrl/QuARI"
-    website: "https://ericx003.github.io/proj/quari/"
-
 RCME:
   bib: sastry2025global
   title: "Global and Local Entailment Learning for Natural World Imagery"  # restore title case
@@ -59,16 +77,6 @@ GenStereo:
     code: "https://github.com/Qjizhi/GenStereo"
     website: "https://qjizhi.github.io/genstereo"
 
-ConText-CIR_CVPR:
-  bib: xing2025context
-  title: "ConText-CIR: Learning from Concepts in Text for Composed Image Retrieval"  # Scholar mangles ConText-CIR
-  thumbnail: "tn/images/contextcir.png"
-  description: "State-of-the-art composed image retrieval by bootstrapping learning from concept representations."
-  links:
-    arxiv: "https://arxiv.org/abs/2505.20764"
-    code: "https://github.com/mvrl/ConText-CIR"
-    website: "https://ericx003.github.io/proj/context_cir/"
-
 RANGE_CVPR:
   bib: dhakal2025range
   title: "RANGE: Retrieval Augmented Neural Fields for Multi-Resolution Geo-Embeddings"  # Scholar lowercases RANGE
@@ -77,6 +85,15 @@ RANGE_CVPR:
   links:
     arxiv: "https://arxiv.org/abs/2502.19781"
     code: "https://github.com/mvrl/RANGE"
+
+Deadwood_Sentinel2:
+  bib: mosig2026sub
+  venue: "EarthArXiv Preprint"
+  thumbnail: "tn/images/deadwood_sentinel2.jpg"
+  description: "Yearly maps of tree and standing-deadwood cover worldwide, at a finer scale than the Sentinel-2 pixel, catching the scattered die-off that binary forest-loss products miss."
+  links:
+    paper: "https://doi.org/10.31223/X5B18W"
+    code: "https://github.com/cmosig/sentle"
 
 good4CIR_CVPRW:
   bib: kolouju2025good4cir
@@ -95,16 +112,6 @@ PSM_ACMMM:
     paper: "data/papers/PSM_ACMMM.pdf"
     arxiv: "https://arxiv.org/abs/2408.07050"
     code: "https://github.com/mvrl/PSM"
-
-AAAI_ALISON:
-  bib: xing2024alison
-  venue: "AAAI Conference on Artificial Intelligence"  # Scholar's booktitle carries arXiv noise
-  thumbnail: "tn/images/AAAI_ALISON.png"
-  description: "An authorship obfuscation method that demonstrates a ~10x speedup over previous methods while outperforming them in terms of attack success, semantic preservation, and fluency."
-  links:
-    paper: "data/papers/ALISON_AAAI.pdf"
-    arxiv: "https://arxiv.org/abs/2402.00835"
-    code: "https://github.com/EricX003/ALISON"
 
 ICPR_Uncertainty:
   bib: xing2022neural

@@ -1,1 +1,12 @@
 .DS_Store
+
+# LaTeX build artifacts (see data/research/Makefile)
+data/research/build/
+
+# Private working notes. This repo is served publicly at ericx003.github.io,
+# so anything tracked here is fetchable by URL.
+data/research/resume_drafts.md
+data/research/drafts/
+
+# Python bytecode from make_site.py
+__pycache__/
