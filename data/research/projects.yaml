@@ -90,7 +90,7 @@ Deadwood_Sentinel2:
   bib: mosig2026sub
   venue: "EarthArXiv Preprint"
   thumbnail: "tn/images/deadwood_sentinel2.jpg"
-  description: "Yearly maps of tree and standing-deadwood cover worldwide, at a finer scale than the Sentinel-2 pixel, catching the scattered die-off that binary forest-loss products miss."
+  description: "Worldwide yearly map of standing-deadwood cover, at a finer scale than the Sentinel-2 pixels, which captures the scattered die-off that binary forest-loss products miss."
   links:
     paper: "https://doi.org/10.31223/X5B18W"
     code: "https://github.com/cmosig/sentle"
